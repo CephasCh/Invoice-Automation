@@ -1,0 +1,661 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="lstMailMessage" Type="InArgument(scg:List(ugm:GmailMessage))" />
+    <x:Property Name="argument1" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.GSuite.Models</x:String>
+      <x:String>UiPath.Shared.Api.Google.Gmail.Models</x:String>
+      <x:String>UiPath.GSuite</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="998,5275.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strValidationMessage" />
+      <Variable x:TypeArguments="x:String" Name="strValidationStatus" />
+      <Variable x:TypeArguments="x:Boolean" Name="blnIsValid" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtItems" />
+      <Variable x:TypeArguments="x:String" Name="strExtractionRemarks" />
+      <Variable x:TypeArguments="x:String" Name="strExtractionStatus" />
+      <Variable x:TypeArguments="x:String" Name="strTotal" />
+      <Variable x:TypeArguments="x:String" Name="strGST" />
+      <Variable x:TypeArguments="x:String" Name="strSubTotal" />
+      <Variable x:TypeArguments="x:String" Name="strDueDate" />
+      <Variable x:TypeArguments="x:String" Name="strInvoiceDate" />
+      <Variable x:TypeArguments="x:String" Name="strInvoiceNumber" />
+      <Variable x:TypeArguments="x:String" Name="strCustomerName" />
+      <Variable x:TypeArguments="x:String" Name="strCompanyName" />
+      <Variable x:TypeArguments="x:String" Name="strTestPdfPath" />
+      <Variable x:TypeArguments="x:String" Name="strPostStatus" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="688,5252" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="C:\Users\chcep\OneDrive\Pictures\ドキュメント\UiPath\Invoice Automation\Data\Input" Name="strInputFolderMain" />
+        <Variable x:TypeArguments="scg:List(x:String)" Name="lstDownloadFiles" />
+        <Variable x:TypeArguments="x:String" Name="strMessage" />
+        <Variable x:TypeArguments="x:String" Name="strDownloadMessage" />
+        <Variable x:TypeArguments="x:String" Name="strDownloadStatus" />
+        <Variable x:TypeArguments="x:String" Name="strMailMessage" />
+        <Variable x:TypeArguments="x:String" Name="strMonitorStatus" />
+        <Variable x:TypeArguments="x:String" Name="strMonitorMessage" />
+        <Variable x:TypeArguments="x:String" Name="strPostMessage" />
+        <Variable x:TypeArguments="s:String[]" Name="arrPdfFiles" />
+        <Variable x:TypeArguments="x:String" Name="strInputFolder" />
+        <Variable x:TypeArguments="x:String" Name="strDestinationFolder" />
+        <Variable x:TypeArguments="x:String" Name="strExceptionFolder" />
+        <Variable x:TypeArguments="x:String" Default="C:\Users\chcep\OneDrive\Pictures\ドキュメント\UiPath\Invoice Automation\Data\Processed" Name="strProcessedFolder" />
+        <Variable x:TypeArguments="x:String" Name="strCurrentFileName" />
+        <Variable x:TypeArguments="x:String" Name="strCurrentFilePath" />
+        <Variable x:TypeArguments="x:String" Name="strFinalMessage" />
+        <Variable x:TypeArguments="x:String" Name="strFinalStatus" />
+        <Variable x:TypeArguments="x:String" Name="strCompanyPinCode" />
+        <Variable x:TypeArguments="x:String" Name="strCompanyTIN" />
+        <Variable x:TypeArguments="x:String" Name="strCompanyContact" />
+        <Variable x:TypeArguments="x:String" Name="strCompanyState" />
+        <Variable x:TypeArguments="x:String" Name="strCompanyCity" />
+        <Variable x:TypeArguments="x:String" Name="strCompanyAddress" />
+        <Variable x:TypeArguments="x:String" Name="strCustomerTIN" />
+        <Variable x:TypeArguments="x:String" Name="strCustomerContact" />
+        <Variable x:TypeArguments="x:String" Name="strCustomerPinCode" />
+        <Variable x:TypeArguments="x:String" Name="strCustomerState" />
+        <Variable x:TypeArguments="x:String" Name="strCustomerCity" />
+        <Variable x:TypeArguments="x:String" Name="strCustomerAddress" />
+        <Variable x:TypeArguments="x:String" Default="C:\Users\chcep\OneDrive\Pictures\ドキュメント\UiPath\Invoice Automation\Data\Output\InvoiceRegister.xlsx" Name="strInvoiceRegisterPath" />
+        <Variable x:TypeArguments="x:Boolean" Name="blnIsDuplicate" />
+        <Variable x:TypeArguments="x:String" Name="strDuplicateMessage" />
+        <Variable x:TypeArguments="x:String" Name="strDuplicateStatus" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="MonitorInbox - Invoke Workflow File (Workflows\Email\MonitorInbox.xaml)" sap:VirtualizedContainerService.HintSize="654.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Workflows\Email\MonitorInbox.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_MonitorMessage">[strMonitorMessage]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_MonitorStatus">[strMonitorStatus]</OutArgument>
+          <OutArgument x:TypeArguments="scg:List(ugm:GmailMessage)" x:Key="out_MailMessage">[lstMailMessage]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceKeyword2">bill</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceKeyword1">invoice</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_GmailFolder">INBOX</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DownloadAttachments - Invoke Workflow File (Workflows\Email\DownloadAttachments.xaml)" sap:VirtualizedContainerService.HintSize="654.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Workflows\Email\DownloadAttachments.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="lstDownloadedFiles">[lstDownloadFiles]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_DownloadMeassage">[strDownloadMessage]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_DownloadStatus">[strDownloadStatus]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_InputFolderPath">[strInputFolderMain]</InArgument>
+          <InArgument x:TypeArguments="scg:List(ugm:GmailMessage)" x:Key="in_MailMessage">[lstMailMessage]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="654.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[strDownloadMessage]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="654.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[strMailMessage + &quot; &quot; + strMonitorStatus + &quot; &quot; + strMonitorStatus]" />
+      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="654.4,56.8" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[strInputFolder]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(System.Environment.CurrentDirectory, "Data\Input")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="s:String[]">[arrPdfFiles]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="s:String[]">[System.IO.Directory.GetFiles(strInputFolder, "*.pdf")]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:MultipleAssign>
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each strCurrentFilePath" sap:VirtualizedContainerService.HintSize="654.4,4515.2" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[arrPdfFiles]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" Name="strCurrentFilePath" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="652.8,4393.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="619.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[strCurrentFileName]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[System.IO.Path.GetFileName(strCurrentFilePath)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="619.2,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[strFinalStatus]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String" xml:space="preserve"> </InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[strFinalMessage]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String" xml:space="preserve"> </InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MultipleAssign>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExtractInvoiceData - Invoke Workflow File (Workflows\Extraction\ExtractInvoiceData.xaml)" sap:VirtualizedContainerService.HintSize="619.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\Extraction\ExtractInvoiceData.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_DueDate">[strDueDate]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_Remarks">[strExtractionRemarks]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_ExtractionStatus">[strExtractionStatus]</OutArgument>
+                  <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtItems">[dtItems]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_Total">[strTotal]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_GST">[strGST]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_SubTotal">[strSubTotal]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_InvoiceDate">[strInvoiceDate]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_InvoiceNumber">[strInvoiceNumber]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerTIN">[strCustomerTIN]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerContactNo">[strCustomerContact]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerPinCode">[strCustomerPinCode]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerState">[strCustomerState]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerCity">[strCustomerCity]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerAddress">[strCustomerAddress]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerName">[strCustomerName]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyTIN">[strCompanyTIN]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyContactInfo">[strCompanyContact]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyPinCode">[strCompanyPinCode]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyState">[strCompanyState]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyCity">[strCompanyCity]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyAddress">[strCompanyAddress]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_CompanyName">[strCompanyName]</OutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PdfPath">[strCurrentFilePath]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <If Condition="[strExtractionStatus = &quot;Failed&quot; OrElse strExtractionStatus = &quot;Partial&quot;]" sap:VirtualizedContainerService.HintSize="619.2,2390.4" sap2010:WorkflowViewState.IdRef="If_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="617.6,231.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="584,171.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                      <ui:MultipleAssign.AssignOperations>
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[strFinalStatus]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[If(strExtractionStatus= "Failed", "Failed", "Needs Review")]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[strFinalMessage]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[strExtractionRemarks]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                        </scg:List>
+                      </ui:MultipleAssign.AssignOperations>
+                    </ui:MultipleAssign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="617.6,2020.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ValidateInvoice - Invoke Workflow File (Workflows\Validation\ValidateInvoice.xaml)" sap:VirtualizedContainerService.HintSize="584,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\Validation\ValidateInvoice.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Total">[strTotal]</InArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_ValidationMessage">[strValidationMessage]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_ValidationStatus">[strValidationMessage]</OutArgument>
+                        <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsValid">[blnIsValid]</OutArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtItems">[dtItems]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_GST">[strGST]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_SubTotal">[strSubTotal]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceDate">[strInvoiceDate]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceNumber">[strInvoiceNumber]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_CustomerName">[strCustomerName]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_CompanyName">[strCompanyName]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InvokeWorkflowFile>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="584,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[strValidationStatus + &quot; &quot; + strValidationMessage]" />
+                    <If Condition="[Not blnIsValid]" sap:VirtualizedContainerService.HintSize="584,1662.4" sap2010:WorkflowViewState.IdRef="If_2">
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="582.4,108" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="548.8,48" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[strFinalStatus]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">Needs Review</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[strFinalMessage]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[strValidationMessage]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:MultipleAssign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="582.4,1424.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckDuplicate - Invoke Workflow File (Workflows\Validation\CheckDuplicate.xaml)" sap:VirtualizedContainerService.HintSize="548.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\Validation\CheckDuplicate.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_DuplicateMessage">[strDuplicateMessage]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_DuplicateStatus">[strDuplicateStatus]</OutArgument>
+                              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsDuplicate">[blnIsDuplicate]</OutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceRegisterPath">[strInvoiceRegisterPath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceNumber">[strInvoiceNumber]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_CompanyName">[strCompanyName]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <If Condition="[blnIsDuplicate]" sap:VirtualizedContainerService.HintSize="548.8,1188.8" sap2010:WorkflowViewState.IdRef="If_3">
+                            <If.Then>
+                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="547.2,231.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="513.6,171.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+                                  <ui:MultipleAssign.AssignOperations>
+                                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                                        <ui:AssignOperation.To>
+                                          <OutArgument x:TypeArguments="x:String">[strFinalStatus]</OutArgument>
+                                        </ui:AssignOperation.To>
+                                        <ui:AssignOperation.Value>
+                                          <InArgument x:TypeArguments="x:String">Duplicate</InArgument>
+                                        </ui:AssignOperation.Value>
+                                      </ui:AssignOperation>
+                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                                        <ui:AssignOperation.To>
+                                          <OutArgument x:TypeArguments="x:String">[strFinalMessage]</OutArgument>
+                                        </ui:AssignOperation.To>
+                                        <ui:AssignOperation.Value>
+                                          <InArgument x:TypeArguments="x:String">[strDuplicateMessage]</InArgument>
+                                        </ui:AssignOperation.Value>
+                                      </ui:AssignOperation>
+                                    </scg:List>
+                                  </ui:MultipleAssign.AssignOperations>
+                                </ui:MultipleAssign>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="547.2,828" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="PostToSystem - Invoke Workflow File (Workflows\Posting\PostToSystem.xaml)" sap:VirtualizedContainerService.HintSize="513.6,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\Posting\PostToSystem.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="outPostStatus">[strPostStatus]</OutArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Total">[strTotal]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_GST">[strGST]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_SubTotal">[strSubTotal]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtItems">[dtItems]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerTIN">[strCustomerTIN]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerContact">[strCustomerContact]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerPinCode">[strCustomerPinCode]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerState">[strCustomerState]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerCity">[strCustomerCity]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerAddress">[strCustomerAddress]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CustomerName">[strCustomerName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceDate">[strInvoiceDate]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceNumber">[strInvoiceNumber]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyTIN">[strCompanyTIN]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyContact">[strCompanyContact]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyPinCode">[strCompanyPinCode]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyState">[strCompanyState]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyCity">[strCompanyCity]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyAddress">[strCompanyAddress]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompanyName">[strCompanyName]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeWorkflowFile>
+                                <If Condition="[strPostStatus &lt;&gt; &quot;Success&quot;]" sap:VirtualizedContainerService.HintSize="513.6,592" sap2010:WorkflowViewState.IdRef="If_4">
+                                  <If.Then>
+                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="512,231.2" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.4,171.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
+                                        <ui:MultipleAssign.AssignOperations>
+                                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                                              <ui:AssignOperation.To>
+                                                <OutArgument x:TypeArguments="x:String">[strFinalStatus]</OutArgument>
+                                              </ui:AssignOperation.To>
+                                              <ui:AssignOperation.Value>
+                                                <InArgument x:TypeArguments="x:String">Failed</InArgument>
+                                              </ui:AssignOperation.Value>
+                                            </ui:AssignOperation>
+                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                                              <ui:AssignOperation.To>
+                                                <OutArgument x:TypeArguments="x:String">[strFinalMessage]</OutArgument>
+                                              </ui:AssignOperation.To>
+                                              <ui:AssignOperation.Value>
+                                                <InArgument x:TypeArguments="x:String">[strPostMessage]</InArgument>
+                                              </ui:AssignOperation.Value>
+                                            </ui:AssignOperation>
+                                          </scg:List>
+                                        </ui:MultipleAssign.AssignOperations>
+                                      </ui:MultipleAssign>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="512,231.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.4,171.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
+                                        <ui:MultipleAssign.AssignOperations>
+                                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                                              <ui:AssignOperation.To>
+                                                <OutArgument x:TypeArguments="x:String">[strFinalStatus]</OutArgument>
+                                              </ui:AssignOperation.To>
+                                              <ui:AssignOperation.Value>
+                                                <InArgument x:TypeArguments="x:String">Success</InArgument>
+                                              </ui:AssignOperation.Value>
+                                            </ui:AssignOperation>
+                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                                              <ui:AssignOperation.To>
+                                                <OutArgument x:TypeArguments="x:String">[strFinalMessage]</OutArgument>
+                                              </ui:AssignOperation.To>
+                                              <ui:AssignOperation.Value>
+                                                <InArgument x:TypeArguments="x:String">Invoice Processed Successfully</InArgument>
+                                              </ui:AssignOperation.Value>
+                                            </ui:AssignOperation>
+                                          </scg:List>
+                                        </ui:MultipleAssign.AssignOperations>
+                                      </ui:MultipleAssign>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SendNotification - Invoke Workflow File (Workflows\Notifications\SendNotification.xaml)" sap:VirtualizedContainerService.HintSize="619.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflows\Notifications\SendNotification.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_FilePath" />
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_EmailMessage" />
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_EmailStatus" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_ToEmail" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Message">[strFinalMessage]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Total">[strTotal]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceNumber">[strInvoiceNumber]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_CompanyName">[strCompanyName]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Status">[strFinalStatus]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="619.2,149.6" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[strExceptionFolder]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(Environment.CurrentDirectory, "Data\Exception")]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+              </ui:MultipleAssign>
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="619.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;Final Status: &quot;+ strFinalStatus]" />
+              <If Condition="[strFinalStatus = &quot;Success&quot;]" sap:VirtualizedContainerService.HintSize="619.2,964.8" sap2010:WorkflowViewState.IdRef="If_5">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strDestinationFolder]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(strProcessedFolder, Now.ToString("yyyyMMdd_HHmmss_") + strCurrentFileName)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[strDestinationFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[strCurrentFilePath]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strDestinationFolder]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(strExceptionFolder, Now.ToString("yyyyMMdd_HHmmss_") + strCurrentFileName)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[strDestinationFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[strCurrentFilePath]" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+      </ui:ForEach>
+    </Sequence>
+  </Sequence>
+</Activity>

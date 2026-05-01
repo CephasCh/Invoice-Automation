@@ -42,7 +42,13 @@ The result is a solution that is simple enough to be studied and demonstrated cl
 
 The diagram below shows the high-level invoice-processing pipeline implemented in this project.
 
-<img width="1400" height="2020" alt="invoice-process-flowchart" src="https://github.com/user-attachments/assets/9e81f38b-7832-4aec-81a6-51c52ce9c566" />
+![Invoice Process Flowchart](report-assets/invoice-process-flowchart.png)
+
+## Use Case Diagram
+
+The following diagram shows the major actors and use cases supported by the system.
+
+![Invoice Use Case Diagram](report-assets/invoice-use-case-diagram.png)
 
 ## Project Structure
 
@@ -339,4 +345,3 @@ It is not just a working automation project, but a well-organized framework that
 ## Contact
 
 If you are reviewing this project for academic, hiring, or collaboration purposes, feel free to use the workflows, diagrams, and report structure in this repository as a reference for modular UiPath solution design.
-

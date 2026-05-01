@@ -1,0 +1,843 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="PostToSystem" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="outPostStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Total" Type="InArgument(x:String)" />
+    <x:Property Name="in_GST" Type="InArgument(x:String)" />
+    <x:Property Name="in_SubTotal" Type="InArgument(x:String)" />
+    <x:Property Name="in_dtItems" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_CustomerTIN" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerContact" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerPinCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerState" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerCity" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerAddress" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerName" Type="InArgument(x:String)" />
+    <x:Property Name="in_InvoiceDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_InvoiceNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyTIN" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyContact" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyPinCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyState" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyCity" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyAddress" Type="InArgument(x:String)" />
+    <x:Property Name="in_CompanyName" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>PostToSystem_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+      <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="PostToSystem" sap:VirtualizedContainerService.HintSize="897.2,3720.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="622.4,3697.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="sd:DataRow" Name="rowItem" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="i" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Invoice Entry" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="588.8,3614.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="587.2,3265.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Sequence- Company Details" sap:VirtualizedContainerService.HintSize="553.6,480.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Name'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyName]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="JYkTzjAtOEWcz1nuT3_XLw" DesignTimeRectangle="329, 207, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyName' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="d11ed2b8-52b7-4490-8a5a-204d00a71a25" InformativeScreenshot="e8d9e0d3b1b783c5f3a99b99f35215f3.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/ubuiScoYFUSaZJcwRUX3yA" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 205, 138, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyName' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyName' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Name' /&gt;" Guid="72eac680-a8e3-422e-8ebf-3d860bae34d6" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Address'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyAddress]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="Sb059vG7VkujuIqxpF9vkQ" DesignTimeRectangle="329, 244, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyAddress' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="08dd3133-88c0-4d85-97db-1488615b10c4" InformativeScreenshot="d0a4250012e99dbb044d580b985fb577.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/a-1ODXS5bU-0NP5uM5uqNQ" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 243, 138, 28" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyAddress' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyAddress' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Address' /&gt;" Guid="56209e04-6637-4bdf-b1be-6edc7c955d14" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'City'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyCity]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="2wCogqJCCU6QGXDBAd2kaw" DesignTimeRectangle="329, 282, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyCity' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="69bbc150-38ef-4fcf-a74c-5dbc17cc5753" InformativeScreenshot="2254259f87792a770bfbb2618cd0d7a3.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/3JQcpN_pS0u_XsOQIfckXw" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 280, 138, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyCity' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyCity' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='City' /&gt;" Guid="4207a551-f879-4613-ae44-e240adff45cd" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'State'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyState]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="El8SMuuUF0CspcnJnzOnHA" DesignTimeRectangle="329, 319, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyState' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="8d435d0e-b902-4562-a5b3-80b6add64cd3" InformativeScreenshot="5d541e35fe5faf10e40a1cf710a2afd8.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/CF9KpoFgiESbVubKeJAC_Q" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 318, 138, 28" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyState' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyState' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='State' /&gt;" Guid="95f15d71-e656-4585-8e71-34d7e8710a48" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Pin Code'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_5" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyPinCode]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="Vqu14w40Rka8NeINgESZtg" DesignTimeRectangle="329, 357, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyPinCode' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="bf7e825f-6946-43fe-bcde-1785eed0a983" InformativeScreenshot="a562ce0f1adecae8fc768780a3bfd07e.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/D1VN4VFGs0yaYCBC94jibg" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 355, 138, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyPinCode' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyPinCode' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Pin Code' /&gt;" Guid="c1eacd2e-b2fa-4ad2-ae58-906811b6365f" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Contact No'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_6" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyContact]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="L-acOUBO8kupnYmCxhGLLw" DesignTimeRectangle="329, 394, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyContactNo' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="9a4d4fbd-3743-4e8c-ae0c-1d911d19bb44" InformativeScreenshot="231169b0c8bea968702ed8e2f6aaf80c.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/XAp_P14RE0CC0swSzUkrKQ" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 393, 138, 28" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyContactNo' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyContactNo' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Contact No' /&gt;" Guid="d885d853-3681-45fa-bece-6694cd8fc653" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Tin'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NTypeInto_7" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CompanyTIN]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="kxdZyyFmQ0GE8VQ2WT1M1w" DesignTimeRectangle="329, 432, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCompanyTin' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="bac1671e-4cce-4e67-a074-ebf91c64cc14" InformativeScreenshot="414de5c919054cba804c41d2b1f521a8.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/ngZinZW2YUmGdwpwcHoOlA" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="170, 430, 138, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCompany' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCompanyTin' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCompanyTin' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Tin' /&gt;" Guid="fbb6c831-083d-4740-9d27-64fd768a2e03" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+              </Sequence>
+              <Sequence DisplayName="Sequence- Customer Details" sap:VirtualizedContainerService.HintSize="553.6,480.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Customer Name'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerName]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="DeBMZlSTMkqyFVI7cIEQMg" DesignTimeRectangle="1036, 207, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerName' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="5fcc9e24-6983-40e4-9d3b-45bfd29f402c" InformativeScreenshot="e84a68237cd9d9c415c2fd1411350676.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/eq0NVn7Fw0uSNJfW0A2VlQ" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 205, 175, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerName' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='Customer Name' /&gt;" Guid="30dbc9f6-98b0-4fbd-b25e-b06e1a35bf80" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Customer Address'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_9" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerAddress]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="f_avHw5e0k-y1P9gw64FDw" DesignTimeRectangle="1036, 244, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerAddress' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="8d661117-a50f-47a2-8832-a74d3f61f627" InformativeScreenshot="48bdb3a1571a775819003e221c97b7d7.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/3xb3jGEMlkWsOE5BO_QSqg" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 243, 175, 28" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerAddress' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCustomerAddress' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Customer Address' /&gt;" Guid="f9ab5e13-54eb-4e3a-8341-5787c9b466e2" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'City'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_10" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerCity]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="b8tTPZJ2qkSgl_EyYRCWNw" DesignTimeRectangle="1036, 282, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerCity' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="272a1a05-9374-4539-aefa-e48ae4378b87" InformativeScreenshot="ad79f1996b5d2d0cc9939af23a6de38a.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/6z90Ka6xsk6oH3eu2qSorQ" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 280, 175, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerCity' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='City' /&gt;" Guid="4c2a906b-500f-4f7c-bf5d-85fb0b010ff6" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'State'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_11" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerState]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="YeStyZrWTEulZiv_5V-k_A" DesignTimeRectangle="1036, 319, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerState' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="19ffe7f9-d07a-4897-b314-8ad0c29579fd" InformativeScreenshot="aafd40b0f67c66f59e1625ebde9cf336.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/71kcgc60rkOcTMmzfAYb0w" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 318, 175, 28" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerState' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCustomerState' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='State' /&gt;" Guid="7bac25f6-7aba-49bb-bed0-df8bb294b0c4" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Pin Code'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_12" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerPinCode]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="yjQZo31VkkmYoZbx_ks33g" DesignTimeRectangle="1036, 357, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerPinCode' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="c49c95b3-f230-4d66-85d9-013739f53da1" InformativeScreenshot="513aae44f908525199704a1c23f6970a.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/Z4gQWNAr7Uqvi3_3ruf1OA" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 355, 175, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerPinCode' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='Pin Code' /&gt;" Guid="556235b2-afa8-4ff5-b57b-c90b9daae0a0" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Contact No'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_13" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerContact]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="-K-QUH0H7Ei1fBrbxu6dsg" DesignTimeRectangle="1036, 394, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerContactNo' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="a082e2a6-026f-4871-a57a-63bbac18885b" InformativeScreenshot="45cb040925aa3ffda0ed95501c92bca7.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/IIUJ9aW6HUmkdwrOZ_B_xw" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 393, 175, 28" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerContactNo' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;ctrl automationid='lblCustomerContactNo' role='text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='Contact No' /&gt;" Guid="69fd85be-f509-4d14-b238-8a9654bf7945" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Tin'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NTypeInto_14" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_CustomerTIN]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="T2oaYTYPHE6pynkzUvtHAg" DesignTimeRectangle="1036, 432, 240, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtCustomerTin' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="0fa133af-0b3c-47ef-9b12-a74d258e6d50" InformativeScreenshot="be12948db6ef43945b6210bfca5ec4f9.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/2UFUE2kie0-OBUBJRuk1Bw" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="841, 430, 175, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpCustomer' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblCustomerTin' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='Tin' /&gt;" Guid="0c9eac5b-286a-4ae5-8090-8cf1395303ba" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+              </Sequence>
+              <Sequence DisplayName="Sequence- Invoice and Total Details" sap:VirtualizedContainerService.HintSize="553.6,196.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Invoice No'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_15" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_InvoiceNumber]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="RhIkb0YUME6BIflIBG_eUA" DesignTimeRectangle="249, 519, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpInvoiceDetails' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtInvoiceNo' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="f3a6c505-4148-45d1-8073-3b2d70d86337" InformativeScreenshot="bba3fb7c0f0a4f7e88e21e974ddca469.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/ie5KG1P0iEK9HbotU4RseA" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="89, 520, 146, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpInvoiceDetails' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblInvoiceNo' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='Invoice No' /&gt;" Guid="5291ea22-ea41-4030-b252-fd28ba0b50f4" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Invoice Date'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NTypeInto_16" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_InvoiceDate]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ContentHash="_c7xwM20UE-JJIGffDHP9A" DesignTimeRectangle="990, 519, 225, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='grpInvoiceDetails' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='txtInvoiceDate' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="ebb289fc-cd64-422c-a72e-4204e01e790a" InformativeScreenshot="b68cbe08c6244064f23ffb76dc7ecac8.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/QRsTLeRtMU6b_dgX_dcV9A" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="829, 520, 146, 29" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='grpInvoiceDetails' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;&lt;wnd ctrlname='lblInvoiceDate' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='Invoice Date' /&gt;" Guid="239a15db-cc1d-45c8-a986-1fa21211199c" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NTypeInto>
+              </Sequence>
+              <Sequence sap:VirtualizedContainerService.HintSize="553.6,2047.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each i" sap:VirtualizedContainerService.HintSize="520,1157.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[System.Linq.Enumerable.Range(0, in_dtItems.Rows.Count)]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:Int32">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Int32" Name="i" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="518.4,1027.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="sd:DataRow">[rowItem]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="sd:DataRow">[in_dtItems.Rows(i)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Sequence sap:VirtualizedContainerService.HintSize="484.79999999999995,769.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[i = 0]" sap:VirtualizedContainerService.HintSize="451.2,472.8" sap2010:WorkflowViewState.IdRef="If_1">
+                            <If.Then>
+                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Item No'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable ContentHash="l18AFpHPxk26bXcdAZPWYA" DesignTimeRectangle="91, 651, 305, 30" ElementType="Cell" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd ctrlname='dgvItems' /&gt;&lt;ctrl name='Row 0' role='row' /&gt;&lt;ctrl idx='2' /&gt;" Guid="0c35af4e-86c7-42af-817e-5348c04142ed" InformativeScreenshot="6ef7f2f311a1c1c9952e31753dd40877.jpg" Reference="4-9b8IYyBE2fLLRhVL0kUQ/gXTANnJSOEO72GkMSwwfQw" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="[UiPath.UIAutomationNext.Enums.NClickMode.None]" ClipboardMode="Never" DisplayName="Type Into '(null)'" EmptyFieldMode="[UiPath.UIAutomationNext.Enums.NEmptyFieldMode.None]" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_20" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[rowItem(&quot;ItemNo&quot;).ToString + &quot;[k(tab)]&quot; +&#xA;rowItem(&quot;Description&quot;).ToString + &quot;[k(tab)]&quot; +&#xA;rowItem(&quot;Quantity&quot;).ToString + &quot;[k(tab)]&quot; +&#xA;rowItem(&quot;Price&quot;).ToString + &quot;[k(tab)]&quot;]" Version="V5">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable ContentHash="i7JJ6L9SmE-L_3d-JdFd_A" DesignTimeRectangle="91, 651, 305, 30" ElementType="Cell" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd ctrlname='dgvItems' /&gt;&lt;ctrl name='Row 0' role='row' /&gt;&lt;ctrl idx='2' /&gt;" Guid="8a6c2e29-baab-4e24-86bd-5ba97d66e450" InformativeScreenshot="18ec5089762a2c7110b5296ba18a7163.jpg" Reference="4-9b8IYyBE2fLLRhVL0kUQ/yXnIor_M_0GlqyboQ4eIaQ" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                            </uix:NTypeInto.Target>
+                          </uix:NTypeInto>
+                        </Sequence>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+                <Sequence DisplayName="Sequence- Total" sap:VirtualizedContainerService.HintSize="520,253.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'SubTotal'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_17" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_SubTotal]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="C9JB83h7bES7ENhocmhV_w" DesignTimeRectangle="1154, 788, 209, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='txtSubTotal' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="4ad02b62-146e-4119-badd-6cd900ea8217" InformativeScreenshot="ee8b3c25f613c1260e62667951dbe5ba.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/5xk6J4QOzUiA3dcqFAzfYg" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="1016, 787, 129, 34" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='lblSubTotal' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='SubTotal' /&gt;" Guid="cef2cbeb-8e53-4a5c-ae5e-2013eeec6d4e" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'GST'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_18" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_GST]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="wkGFo78fvEG4KiUrKJBqig" DesignTimeRectangle="1154, 827, 209, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='txtGst' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="145fb5e0-8d00-4ddf-a218-c47df7f89be1" InformativeScreenshot="7581bddc326b4a176b13493359a536b1.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/uWPBz4PW90CVdmq3MBs1yA" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="1016, 825, 129, 34" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='lblGst' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='GST' /&gt;" Guid="f604029e-c551-465b-8eed-73a228b54c51" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Total'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NTypeInto_19" InteractionMode="SameAsCard" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Text="[in_Total]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="aa9EITQiG0eO0FGU9fQsDw" DesignTimeRectangle="1154, 865, 209, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd ctrlname='txtTotal' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' /&gt;" Guid="7ebdaacc-fc2c-401b-80a4-df6ac2619c08" InformativeScreenshot="72308990fd5abd63a3566aa5ba7078c1.jpg" IsResponsive="True" Reference="4-9b8IYyBE2fLLRhVL0kUQ/mPVLonv9ekGgI6hdo5DO5g" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="1016, 864, 129, 34" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlname='lblTotal' matching:ctrlname='fuzzy' fuzzylevel:ctrlname='0.0' check:text='Total' /&gt;" Guid="c297704f-a6be-416d-87a8-aea04a13eb85" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                </Sequence>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Submit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Version="V5">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable ContentHash="5fpG_wiMyEOjAoYPLd7hfQ" DesignTimeRectangle="1016, 910, 160, 45" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd ctrlname='btnSubmit' /&gt;" Guid="0bd902c4-c080-457c-99c4-6a6b920b626c" InformativeScreenshot="6c90f0a8b97c82f655ab8e43c9b71bda.jpg" Reference="4-9b8IYyBE2fLLRhVL0kUQ/eqiiqqT8xE2HtklGOhNtfg" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="57be4d80-aa28-41a4-aefd-3f0a86a987fc" Version="V5">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable CVScreenId="d99c86eb-a980-4a4c-9109-18f663ad900e" ContentHash="rgWBgvIJmU2KN9mmG_AjiA" CvElementArea="180, 148, 93, 28" CvTextArea="182, 151, 92, 23" CvTextArgument="%[ex]" CvType="Button" DesignTimeRectangle="181, 149, 94, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd ctrlid='2' title='OK' /&gt;" Guid="7858505a-68a6-4e25-9f5e-10412831fff3" InformativeScreenshot="721ca1a1d881959e24fde9b238e47edd.jpg" Reference="4-9b8IYyBE2fLLRhVL0kUQ/lhHT4BapRkeWGRY-34iv4w" ScopeSelectorArgument="&lt;wnd app='invoiceentryapp.exe' cls='#32770' title='Success' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="88, 80, 169, 19" ElementType="Text" FuzzySelectorArgument="&lt;wnd ctrlid='65535' title='Invoice saved successfully.' matching:ctrlid='fuzzy' fuzzylevel:ctrlid='0.0' matching:title='fuzzy' fuzzylevel:title='0.0' check:text='Invoice saved successfully.' /&gt;" Guid="9c10331b-36c3-473e-bf5d-602a35819e8d" SearchSteps="FuzzySelector" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <Assign sap:VirtualizedContainerService.HintSize="520,165.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[outPostStatus]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.OCREngine>
+          <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))" DisplayName="Custom OCR Engine">
+            <ActivityFunc.Argument>
+              <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+            </ActivityFunc.Argument>
+            <ui:GoogleOCR AllowedCharacters="{x:Null}" DeniedCharacters="{x:Null}" FilterRegion="{x:Null}" Invert="{x:Null}" Language="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Profile="{x:Null}" Scale="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Tesseract OCR" ExtractWords="True" sap:VirtualizedContainerService.HintSize="563.2,24.8" sap2010:WorkflowViewState.IdRef="GoogleOCR_1" Image="[Image]" NoopExecution="False" />
+          </ActivityFunc>
+        </uix:NApplicationCard.OCREngine>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="250, 46, 1420, 986" ContentHash="e-VGfm9Unk-AQsgJW-eFdg" FilePath="D:\projects\ERP application\publish\InvoiceEntryApp\invoiceentryapp.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAABRSURBVDhP1c+xDQAgCERRZmP/eWixIiEnCEYLLV6D8o2kqnRiGhgR0UoZYObUYwH8m8GlZSC6gDM8/yBQKQM48y+be4EILqeBCMa8VqBrGuwafATIM/bpFdMAAAAASUVORK5CYII=" InformativeScreenshot="1d8c6bd87c802733a444c3b82425f098.jpg" Reference="4-9b8IYyBE2fLLRhVL0kUQ/ljQVW2W72UWPJc8B_zNmSQ" Selector="&lt;wnd app='invoiceentryapp.exe' ctrlname='InvoiceEntryForm' /&gt;" Version="V2">
+            <uix:TargetApp.Arguments>
+              <InArgument x:TypeArguments="x:String" />
+            </uix:TargetApp.Arguments>
+            <uix:TargetApp.WorkingDirectory>
+              <InArgument x:TypeArguments="x:String" />
+            </uix:TargetApp.WorkingDirectory>
+          </uix:TargetApp>
+        </uix:NApplicationCard.TargetApp>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uix:NApplicationCard>
+    </Sequence>
+  </Sequence>
+</Activity>
