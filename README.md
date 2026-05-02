@@ -206,6 +206,7 @@ Make sure the following are available:
 - Microsoft Excel
 - Gmail account access for email automation
 - The desktop invoice entry application used by the project
+- Follow the App-Setup.md to setup the invoice entry application for this project
 
 ### 3. Open the Project in UiPath Studio
 
