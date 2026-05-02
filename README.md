@@ -42,13 +42,8 @@ The result is a solution that is simple enough to be studied and demonstrated cl
 
 The diagram below shows the high-level invoice-processing pipeline implemented in this project.
 
-![Invoice Process Flowchart](report-assets/invoice-process-flowchart.png)
+<img width="1400" height="2020" alt="invoice-process-flowchart" src="https://github.com/user-attachments/assets/5d3f1d06-6323-4384-9f6f-a3546b682a77" />
 
-## Use Case Diagram
-
-The following diagram shows the major actors and use cases supported by the system.
-
-![Invoice Use Case Diagram](report-assets/invoice-use-case-diagram.png)
 
 ## Project Structure
 
