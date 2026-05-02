@@ -67,27 +67,22 @@ Invoice Automation/
 │   │   └── ProcessingLog.xlsx
 │   ├── Logs/
 │   └── Temp/
-├── Workflows/
-│   ├── Email/
-│   │   ├── MonitorInbox.xaml
-│   │   ├── DownloadAttachments.xaml
-│   │   ├── MoveProcessedEmail.xaml
-│   │   └── MoveExceptionEmail.xaml
-│   ├── Extraction/
-│   │   └── ExtractInvoiceData.xaml
-│   ├── Validation/
-│   │   ├── ValidateInvoice.xaml
-│   │   └── CheckDuplicate.xaml
-│   ├── Posting/
-│   │   └── PostToSystem.xaml
-│   └── Notifications/
-│       └── SendNotification.xaml
-└── report-assets/
-    ├── invoice-process-flowchart.svg
-    ├── invoice-process-flowchart.png
-    ├── invoice-use-case-diagram.svg
-    ├── invoice-use-case-diagram.png
-    └── generate_diagram_pngs.ps1
+└──  Workflows/
+    ├── Email/
+    │   ├── MonitorInbox.xaml
+    │   ├── DownloadAttachments.xaml
+    │   ├── MoveProcessedEmail.xaml
+    │   └── MoveExceptionEmail.xaml
+    ├── Extraction/
+    │   └── ExtractInvoiceData.xaml
+    ├── Validation/
+    │   ├── ValidateInvoice.xaml
+    │   └── CheckDuplicate.xaml
+    ├── Posting/
+    │   └── PostToSystem.xaml
+    └── Notifications/
+        └── SendNotification.xaml
+
 ```
 
 ## Workflow Breakdown
