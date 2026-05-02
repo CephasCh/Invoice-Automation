@@ -341,3 +341,6 @@ It is not just a working automation project, but a well-organized framework that
 ## Contact
 
 If you are reviewing this project for academic, hiring, or collaboration purposes, feel free to use the workflows, diagrams, and report structure in this repository as a reference for modular UiPath solution design.
+
+You can contact me through mail if you have any questions on setup or other details, i will reply to your queries as soon as poosible
+
